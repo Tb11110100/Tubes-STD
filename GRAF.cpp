@@ -109,7 +109,7 @@ void printGraph(const Graph& G) {
     cout << "Grup: " << endl;
     adrVertexGrup grup = firstGrup(G);
     while (grup != Nil) {
-        cout << "- " << grupName(grup) << " members: ";
+        cout << grupName(grup) << " members: ";
         adrEdgeMember member = firstMember(grup);
         while (member != Nil) {
             cout << memberName(member);
