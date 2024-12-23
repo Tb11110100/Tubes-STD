@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1734929788 source:c:\users\lenovo\kuliah\std - struktur data\tugas besar struktur data\main.cpp
+	"GRAF.h"
+
+1734927981 c:\users\lenovo\kuliah\std - struktur data\tugas besar struktur data\graf.h
+	<iostream>
+
+1734929930 source:c:\users\lenovo\kuliah\std - struktur data\tugas besar struktur data\graf.cpp
+	"GRAF.h"
+
