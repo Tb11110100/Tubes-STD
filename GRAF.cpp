@@ -121,6 +121,7 @@ void printGraph(const Graph& G) {
         cout << endl;
         grup = nextGrup(grup);
     }
+    cout << "=========================================================" << endl;
 }
 
 bool isMutual(const Graph& G, string akun1, string akun2){
