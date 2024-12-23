@@ -46,9 +46,17 @@ int main() {
     addGrup(G, "Telkom Radio");
     addMember(G, "Telkom Radio", "Razky");
 
-
-
     printGraph(G);
+
+    cout << endl;
+
+    cout << "Akun dengan follower terbanyak adalah : " << mostFollowed(G) << endl << endl;
+    cout << "Grup dengan anggota terbanyak adalah : " <<  mostJoined(G)<< endl << endl;
+
+    cout << "Zidan & Tubagus is mutual? " << isMutual(G, "Zidan", "Tubagus") << endl;
+    cout << "Zidan & Ilham is mutual? " << isMutual(G, "Zidan", "Ilham") << endl;
+    cout << "Zidan & Damai is mutual? " << isMutual(G, "Zidan", "Damai") << endl;
+    cout << "Zidan & Razky is mutual? " << isMutual(G, "Zidan", "Razky") << endl;
 
     return 0;
 }
