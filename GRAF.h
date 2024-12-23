@@ -66,5 +66,8 @@ void addGrup(Graph& G, string namaGrup);
 void addFollow(Graph& G, string akun1, string akun2);
 void addMember(Graph& G, string grup, string akun);
 void printGraph(const Graph& G);
+bool isMutual(const Graph& G, string akun1, string akun2);
+string mostFollowed(const Graph& G);
+string mostJoined(const Graph& G);
 
 #endif
