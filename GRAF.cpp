@@ -122,3 +122,88 @@ void printGraph(const Graph& G) {
         grup = nextGrup(grup);
     }
 }
+
+bool isMutual(const Graph& G, string akun1, string akun2){
+    adrVertexAkun a1 = firstAkun(G);
+    while (a1 != Nil && namaAkun(a1) != akun1){
+        a1 = nextAkun(a1);
+    }
+    adrVertexAkun a2 = firstAkun(G);
+    while (a2 != Nil && namaAkun(a2) != akun2) {
+        a2 = nextAkun(a2);
+    }
+    if (a1 == Nil || a2 == Nil) return false;
+    bool followsA1toA2 = false, followsA2toA1 = false;
+    adrEdgeFollow follow = firstFollow(a1);
+    while (follow != Nil) {
+        if (followName(follow) == akun2) {
+            followsA1toA2 = true;
+            break;
+        }
+        follow = nextFollow(follow);
+    }
+    follow = firstFollow(a2);
+    while (follow != Nil) {
+        if (followName(follow) == akun1) {
+            followsA2toA1 = true;
+            break;
+        }
+        follow = nextFollow(follow);
+    }
+    return followsA1toA2 && followsA2toA1;
+}
+
+string mostFollowed(const Graph& G) {
+    string mostFollowedAkun;
+    int maxFollowers = 0;
+
+    adrVertexAkun akun = firstAkun(G);
+    while (akun != Nil) {
+        int count = 0;
+        adrVertexAkun temp = firstAkun(G);
+        while (temp != Nil) {
+            adrEdgeFollow follow = firstFollow(temp);
+            while (follow != Nil) {
+                if (followName(follow) == namaAkun(akun)) {
+                    count++;
+                    break;
+                }
+                follow = nextFollow(follow);
+            }
+            temp = nextAkun(temp);
+        }
+
+        if (count > maxFollowers) {
+            maxFollowers = count;
+            mostFollowedAkun = namaAkun(akun);
+        }
+
+        akun = nextAkun(akun);
+    }
+
+    return mostFollowedAkun;
+}
+
+string mostJoined(const Graph& G) {
+    string mostJoinedGroup;
+    int maxMembers = 0;
+
+    adrVertexGrup grup = firstGrup(G);
+    while (grup != Nil) {
+        int count = 0;
+        adrEdgeMember member = firstMember(grup);
+        while (member != Nil) {
+            count++;
+            member = nextMember(member);
+        }
+
+        if (count > maxMembers) {
+            maxMembers = count;
+            mostJoinedGroup = grupName(grup);
+        }
+
+        grup = nextGrup(grup);
+    }
+
+    return mostJoinedGroup;
+}
