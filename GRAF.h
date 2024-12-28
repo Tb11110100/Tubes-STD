@@ -72,5 +72,8 @@ string mostJoined(const Graph& G);
 void deleteAccount(Graph& G, string akun);
 void deleteGroup(Graph& G, string grup);
 void unfollow(Graph& G, string akun1, string akun2);
+void quit(Graph& G, string grup, string akun);
+void prebuildGraf(Graph& G);
+void cetakMenu();
 
 #endif
