@@ -335,3 +335,121 @@ void unfollow(Graph& G, string akun1, string akun2) {
         }
     }
 }
+
+
+void quit(Graph& G, string grup, string akun) {
+    adrVertexGrup group = firstGrup(G);
+    while (group != Nil && grupName(group) != grup) {
+        group = nextGrup(group);
+    }
+
+    if (group != Nil) {
+        adrEdgeMember member = firstMember(group);
+        adrEdgeMember prevMember = Nil;
+
+        while (member != Nil && memberName(member) != akun) {
+            prevMember = member;
+            member = nextMember(member);
+        }
+
+        if (member != Nil) {
+            if (prevMember == Nil) {
+                firstMember(group) = nextMember(member);
+            } else {
+                nextMember(prevMember) = nextMember(member);
+            }
+            delete member;
+        }
+    }
+}
+
+void prebuildGraf(Graph& G){
+    addAkun(G, "Tubagus");
+    addAkun(G, "Zidan");
+    addAkun(G, "Ilham");
+    addAkun(G, "Razky");
+    addAkun(G, "Damai");
+
+    addFollow(G, "Tubagus", "Ilham");
+    addFollow(G, "Tubagus", "Razky");
+    addFollow(G, "Tubagus", "Damai");
+
+    addFollow(G, "Zidan", "Tubagus");
+    addFollow(G, "Zidan", "Ilham");
+    addFollow(G, "Zidan", "Damai");
+
+    addFollow(G, "Ilham", "Zidan");
+
+    addFollow(G, "Razky", "Tubagus");
+    addFollow(G, "Razky", "Ilham");
+    addFollow(G, "Razky", "Zidan");
+
+    addFollow(G, "Damai", "Zidan");
+    addFollow(G, "Damai", "Razky");
+
+
+    addGrup(G, "FitRent");
+    addMember(G, "FitRent", "Tubagus");
+    addMember(G, "FitRent", "Zidan");
+    addMember(G, "FitRent", "Ilham");
+    addMember(G, "FitRent", "Damai");
+    addMember(G, "FitRent", "Razky");
+
+    addGrup(G, "SES");
+    addMember(G, "SES", "Tubagus");
+
+    addGrup(G, "CCI");
+    addMember(G, "CCI", "Damai");
+    addMember(G, "CCI", "Ilham");
+
+    addGrup(G, "Telkom Radio");
+    addMember(G, "Telkom Radio", "Razky");
+
+    printGraph(G);
+    cout << endl;
+    cout << "Akun dengan follower terbanyak adalah : " << mostFollowed(G) << endl << endl;
+    cout << "Grup dengan anggota terbanyak adalah : " <<  mostJoined(G)<< endl << endl;
+
+    if (isMutual(G, "Zidan", "Tubagus")){
+        cout << "Zidan" << " dan " <<  "Tubagus" << " is mutual" << endl;
+    } else {
+        cout << "Zidan" << " dan " <<  "Tubagus" << " is not mutual" << endl;
+    }
+
+    if (isMutual(G, "Zidan", "Ilham")){
+        cout << "Zidan" << " dan " <<  "Ilham" << " is mutual" << endl;
+    } else {
+        cout << "Zidan" << " dan " <<  "Ilham" << " is not mutual" << endl;
+    }
+
+    if (isMutual(G, "Zidan", "Damai")){
+        cout << "Zidan" << " dan " <<  "Damai" << " is mutual" << endl;
+    } else {
+        cout << "Zidan" << " dan " <<  "Damai" << " is not mutual" << endl;
+    }
+    cout << endl;
+}
+
+void cetakMenu(){
+    cout << "==========================MENU===========================" << endl;
+
+    cout << "1.  Buat Akun" << endl;
+    cout << "2.  Hapus Akun" << endl;
+    cout << "3.  Buat Grup" << endl;
+    cout << "4.  Hapus Grup" << endl;
+    cout << endl;
+    cout << "5.  Follow Akun" << endl;
+    cout << "6.  Unfollow Akun" << endl;
+    cout << "7.  Join Grup" << endl;
+    cout << "8.  Quit Grup" << endl;
+    cout << endl;
+    cout << "9.  Cek Mutual" << endl;
+    cout << "10. Cetak Akun Dengan Follower Terbanyak" << endl;
+    cout << "11. Cetak Grup Dengan Anggota Terbanyak" << endl;
+    cout << endl;
+    cout << "12. Cetak Graf" << endl;
+    cout << "13. Tes Prebuild Graf" << endl;
+    cout << "0.  Keluar"<< endl ;
+
+    cout << "=========================================================" << endl << endl;
+}
